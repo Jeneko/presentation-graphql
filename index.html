@@ -1,0 +1,220 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>reveal.js</title>
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/black.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+
+	<style>
+		.highlight-red {
+			color: #ff003b;
+		}
+
+		.highlight-green {
+			color: #00db58;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+
+			<!-- SLIDE 1 (GraphQL) -->
+			<section data-markdown>
+				<textarea data-template>
+						## <span class="highlight-green">GraphQL</span>
+					</textarea>
+			</section>
+
+			<!-- SLIDE 2 (What is GraphQL) -->
+			<section data-markdown>
+				<textarea data-template>
+					## What is <span class="highlight-green">GraphQL</span>
+
+					* Query language + Server-side runtime
+					* Advanced alternative to REST
+
+					<hr>
+
+					Popular GraphQL server: [Apollo Server](https://www.apollographql.com/)
+				</textarea>
+			</section>
+
+			<!-- SLIDE 3 (Weak points of REST API) -->
+			<section data-markdown>
+				<textarea data-template>
+					## Weak points of <span class="highlight-red">REST API</span>
+
+					* Under- and overfetching of data
+					* Multiple requests
+					* To many endpoints
+				</textarea>
+			</section>
+
+			<!-- SLIDE 4 (Strong points of GraphQL) -->
+			<section data-markdown>
+				<textarea data-template>
+					## Strong points of <span class="highlight-green">GraphQL</span>
+					
+					* One endpoint
+					* You get only the data you need
+				</textarea>
+			</section>
+
+			<!-- SLIDE 5 (Request comparing) -->
+			<section>
+				<!-- SLIDE 5.1 (Request comparing) -->
+				<section data-markdown>
+					<textarea data-template>
+					## <span class="highlight-green">GraphQL</span> vs <span class="highlight-red">REST API</span>
+					### Request comparing	
+				</textarea>
+				</section>
+				<!-- SLIDE 5.2 (Basic REST API request) -->
+				<section data-markdown>
+					<textarea data-template>
+					#### Basic <span class="highlight-red">REST API</span> request
+
+					```js
+					const url = 'https://example.com/users';
+					const response = fetch(url);
+					const users = await response.json();
+
+					// users => [{name: 'Jhon', pet: 'rat', favColor: 'blue'}]
+					```
+				</textarea>
+				</section>
+				<!-- SLIDE 5.3 (Basic GraphQL request) -->
+				<section data-markdown>
+					<textarea data-template>
+					#### Basic <span class="highlight-green">GraphQL</span> request
+
+					```js
+					// Query string example
+					const query = 'query { users { name } }';
+
+					const url = 'http://localhost:4000/';
+					const response = await fetch(url, {
+						method: 'POST',
+						headers: { 'Content-Type': 'application/json' },
+						body: JSON.stringify({ query })
+					});
+					const users = await response.json();
+
+					// users => [{name: 'Jhon'}]
+					```
+				</textarea>
+				</section>
+			</section>
+
+			<!-- SLIDE 6 (Format of the query string) -->
+			<section data-markdown>
+				<textarea data-template>
+					## Format of the query string
+					
+					```js
+					// Query string example
+					const query = `
+						query GetUser ($id: ID!) {
+							user(id: $id) {
+								id
+								name
+							} 
+						}
+					`;
+					```
+				</textarea>
+			</section>
+
+			<!-- SLIDE 7 (Schema in GraphQL) -->
+			<section data-markdown>
+				<textarea data-template>
+					## Schema in <span class="highlight-green">GraphQL</span>
+
+					* Provides us list of data we can request
+					* Provides us list of methods we can use to mutate our data
+					* Contains information about types
+
+					### Links
+					* Chrome extension [GraphQL Playground for Chrome](https://chrome.google.com/webstore/detail/graphql-playground-for-ch/kjhjcgclphafojaeeickcokfbhlegecd)
+				</textarea>
+			</section>
+
+			<!-- SLIDE 8 (Mutate data with GraphQL) -->
+			<section>
+				<!-- SLIDE 8.1 (Mutate data with GraphQL) -->
+				<section data-markdown>
+					<textarea data-template>
+						## Mutate data with <span class="highlight-green">GraphQL</span>
+					</textarea>
+				</section>
+				<!-- SLIDE 8.2 (GraphQL mutation string) -->
+				<section data-markdown>
+					<textarea data-template>
+						#### <span class="highlight-green">GraphQL</span> mutation string
+
+						```js
+						const query = `
+							mutation {
+								updateUser(id: "2", name: "Adam") {
+									id
+									name
+								} 
+							}
+						`;
+						```
+					</textarea>
+				</section>
+			</section>
+
+			<!-- SLIDE 9 (Subscriptions) -->
+			<section data-markdown>
+				<textarea data-template>
+					## Subscriptions
+
+					<hr>
+
+					Link to read about the [Subscriptions](https://www.apollographql.com/docs/react/data/subscriptions/)
+				</textarea>
+			</section>
+
+			<!-- SLIDE 10 (Conclusion) -->
+			<section data-markdown>
+				<textarea data-template>
+					## Conclusion
+
+					* [GraphQL offical site](https://graphql.org/)
+					* [Apollo Server offical site](https://www.apollographql.com/)
+				</textarea>
+			</section>
+		</div>
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+		});
+	</script>
+</body>
+
+</html>
